@@ -14,8 +14,8 @@ from os import path
 app = FastAPI()
 
 # URL Constants
-BASE_URL_VJ = "https://below.black/v2/label/img/sync/vj/"
-BASE_URL_SCENO = "https://below.black/v2/label/img/sync/"
+BASE_URL_VJ = "https://below.black/sync/vj/"
+BASE_URL_SCENO = "https://below.black/sync/"
 
 # Setup CORS middleware
 app.add_middleware(
