@@ -1,11 +1,4 @@
-let i = 1;
-let max = 2;
-function homePicsCarrousel() {
-    let prefix = 'media/home/'
-    let el = document.getElementById('home-pic');
-    el.src = prefix + i + '.jpg';
-    i = (i == max) ? 1 : i + 1;
-}
+const API_URL = window.location.protocol === 'file:' ? 'http://localhost:8000' : 'https://below.black';
 
 Vue.component('carousel', {
     props : ['n', 'src', 'title', 'credit'],
@@ -145,7 +138,7 @@ var vueh = new Vue({
         },
         getEvents: function() {
             var self = this;
-            fetch('https://below.black/api/events').then(function (response) {
+            fetch(API_URL + '/api/events').then(function (response) {
             // The API call was successful!
                 return response.json();
             }).then(function (data) {
@@ -174,7 +167,7 @@ var vueh = new Vue({
         },
         getVJ: function() {
             var self = this;
-            fetch('https://below.black/api/vj').then(function (response) {
+            fetch(API_URL + '/api/vj').then(function (response) {
             // The API call was successful!
                 return response.json();
             }).then(function (data) {
@@ -191,7 +184,7 @@ var vueh = new Vue({
         },
         getSceno: function() {
             var self = this;
-            fetch('https://below.black/api/sceno').then(function (response) {
+            fetch(API_URL + '/api/sceno').then(function (response) {
             // The API call was successful!
                 return response.json();
             }).then(function (data) {
