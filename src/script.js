@@ -143,7 +143,7 @@ new Vue({
                 .then(response => response.json())
                 .then(data => {
                     this.events = data.map(event => {
-                        const [month, day, year] = event.date.split(' ');
+                        const [day, month, year] = event.date.split(' ');
                         event.hdate = `${day} ${humanMonth[parseInt(month)]} ${year}`;
                         event.date = Date.parse(`${day} ${month} ${year}`);
                         event.future = (event.date > now);
