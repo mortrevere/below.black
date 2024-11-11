@@ -99,8 +99,8 @@ def get_events():
 @app.get("/api/vj")
 def get_vj_files():
     files = sorted(
-        glob.glob("/tmp/sync/vj/*"),
-        key=lambda x: int(x.split("/")[-1].split(".")[0]),
+        [f for f in glob.glob("/tmp/sync/vj/*") if f.split(".")[-1].lower() in ("jpg", "png")],
+        key=lambda x: int(x.split("/")[-1].split(".")[0])
     )
     return [f"{BASE_URL_VJ}{f.split('/')[-1]}" for f in files if not f.endswith(".txt")]
 
