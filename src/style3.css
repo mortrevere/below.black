@@ -370,6 +370,11 @@ nav ul li {
     margin-top: 16px;
 }
 
+#vinylz .tracklist .note {
+    font-style: italic;
+    margin-top: 12px;
+}
+
 #vinylz .tracklist ul {
     list-style-type: none;
 }
