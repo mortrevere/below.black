@@ -100,7 +100,7 @@ const now = new Date().getTime();
 let futureFlag = false;
 let nextEvent = null;
 
-new Vue({
+var vueh = new Vue({
     el: '#app-below',
     data: {
         currentSection: window.location.hash ? window.location.hash.substr(1) : 'home',
