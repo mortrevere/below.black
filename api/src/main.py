@@ -107,7 +107,7 @@ def get_vj_files():
 
 @app.get("/api/sceno")
 def get_scenes():
-    folders = sorted(glob.glob("/tmp/sync/sceno_*"), reverse=True)
+    folders = sorted(glob.glob("/tmp/sync/sceno_*"), reverse=True, key=lambda x: int(x.split("_")[1]))
     scenes = {}
 
     for folder in folders:
