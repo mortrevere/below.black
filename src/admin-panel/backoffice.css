@@ -1,0 +1,28 @@
+#login {
+    width: 25%;
+    margin: auto;
+    margin-top: 128px;
+}
+
+#login input,
+#login table {
+    width: 100%;
+}
+
+#login input,
+#login button {
+    background-color: #000;
+    border: 1px solid #FFF;
+    color: #FFF;
+    padding: 16px;
+    font-size: 20px;
+    margin: 32px;
+    box-sizing: border-box;
+}
+
+#add-event {
+    border: 1px solid #FFF;
+    padding: 24px;
+    margin: 32px;
+    display: inline-block;
+}
