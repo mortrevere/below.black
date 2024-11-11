@@ -1,0 +1,17 @@
+<header>
+    <div id="logo-bar">
+    </div>
+    <img v-on:click="load('home')" id="logo" src="media/inv.png" />
+
+    <nav>
+
+        <ul>
+            <li v-bind:class="{active : currentSection === 'vinyl'}" v-on:click="load('vinyl')">Label</li>
+            <li v-bind:class="{active : currentSection === 'sceno'}" v-on:click="load('sceno')">Scénographie
+            </li>
+            <li v-bind:class="{active : currentSection === 'vj'}" v-on:click="load('vj')">VJ</li>
+            <li v-bind:class="{active : currentSection === 'events'}" v-on:click="load('events')">Évenements
+            </li>
+        </ul>
+    </nav>
+</header>

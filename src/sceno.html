@@ -1,0 +1,9 @@
+<div v-for="s in sceno">
+    <div class="sceno-title">
+        <p> {{s.description}} </p>
+        <p v-if="s.copyright">&copy; {{s.copyright}} </p>
+    </div>
+    <div class="sceno-img-wrapper" v-for="img in s.img">
+        <img v-bind:src="img" />
+    </div>
+</div>

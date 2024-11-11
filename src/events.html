@@ -1,0 +1,7 @@
+<table class="section" id="events">
+
+    <tr v-for="event in events" v-bind:class="{future : event.future}">
+        <td>{{event.hdate}}</td>
+        <td>{{event.name}}</td>
+    </tr>
+</table>

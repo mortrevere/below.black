@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>beLow - Arts numériques // Label // Scénographie</title>
+    <link rel="stylesheet" href="style3.css">
+    <script src="script.js" defer></script>
+    <link rel="icon" type="image/png" href="media/favicon/96x96.png" sizes="96x96">
+    <script src="bg.js" defer></script>
+    <link href="https://fonts.googleapis.com/css?family=ABeeZee&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;600;800&display=swap" rel="stylesheet">
+    <script src="vue.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=0.65, shrink-to-fit=no">
+</head>
+
+<body>
+    <canvas id="c"></canvas>
+    <img id="logo-loader" src="media/loader.png" />
+    <div id="app-below">
+        \o/ src["menu.html"] \o/
+
+        <div v-if="currentSection === 'home'">
+            \o/ src["home.html"] \o/
+        </div>
+
+        <div v-if="currentSection === 'sceno'" id="sceno">
+            \o/ src["sceno.html"] \o/
+        </div>
+
+        <div v-if="currentSection === 'vj'" id="vj">
+            \o/ src["vj.html"] \o/
+        </div>
+
+        <div v-if="currentSection === 'events'">
+            \o/ src["events.html"] \o/
+        </div>
+
+        <div id="vinylz" v-if="currentSection === 'vinyl'">
+            \o/ src["label.html"] \o/
+        </div>
+
+    </div>
+
+    \o/ src["social.html"] \o/
+
+</body>
+
+</html>
