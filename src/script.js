@@ -1,3 +1,4 @@
+!norender
 const API_URL = window.location.protocol === 'file:' ? 'http://localhost:8000' : 'https://below.black';
 
 Vue.component('carousel', {
