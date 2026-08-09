@@ -20,6 +20,12 @@ function setActiveSection(section, updateHash = true) {
         element.hidden = element.dataset.section !== section;
     });
 
+    const activeSection = document.querySelector(`#app-below > [data-section="${section}"]`);
+    const app = document.getElementById('app-below');
+    if (activeSection && app && getComputedStyle(app).display !== 'none') {
+        loadLazyEmbeds(activeSection);
+    }
+
     document.querySelectorAll('nav li[data-section]').forEach(item => {
         item.classList.toggle('active', item.dataset.section === section);
     });
@@ -36,6 +42,14 @@ function setActiveSection(section, updateHash = true) {
     if (canvas) {
         canvas.style.display = 'block';
     }
+}
+
+function loadLazyEmbeds(container) {
+    container.querySelectorAll('iframe[data-src]').forEach(iframe => {
+        if (!iframe.src) {
+            iframe.src = iframe.dataset.src;
+        }
+    });
 }
 
 function initNavigation() {
