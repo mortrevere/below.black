@@ -269,6 +269,16 @@ nav ul li {
     align-items: flex-start;
 }
 
+#sceno .sceno-random-title {
+    margin-top: 0;
+}
+
+#sceno .sceno-random-gallery {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: flex-start;
+}
+
 #sceno .sceno-img-wrapper {
     width: calc(33% - 12px);
     margin: 6px;
@@ -485,6 +495,9 @@ canvas {
         width: calc(50% - 12px);
         margin: 6px;
         height: 250px;
+    }
+    #sceno .sceno-random-gallery {
+        flex-wrap: wrap;
     }
     #vj .vj-img-wrapper {
         width: calc(100% - 12px);

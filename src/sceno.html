@@ -1,4 +1,8 @@
 {% set albums = _o_["glob"]("media/pics/sceno_*", kind="folder") %}
+<div class="sceno-title sceno-random-title">
+    <p>Au hasard</p>
+</div>
+<div class="sceno-random-gallery" aria-label="Au hasard"></div>
 {% for index in range(999, -1, -1) %}
 {% for album in albums %}
 {% if album["name"].startswith("sceno_" ~ index ~ "_") and has_images(album["path"]) == "True" %}
