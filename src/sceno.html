@@ -1,6 +1,7 @@
 {% set albums = _o_["glob"]("media/pics/sceno_*", kind="folder") %}
 <div class="sceno-title sceno-random-title">
     <p>Au hasard</p>
+    <button class="sceno-random-refresh" type="button" aria-label="Rafraîchir la sélection">↻</button>
 </div>
 <div class="sceno-random-gallery" aria-label="Au hasard"></div>
 {% for index in range(999, -1, -1) %}
