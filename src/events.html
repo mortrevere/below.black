@@ -1,8 +1,9 @@
-!norender
+{% set events = _o_.load_yaml("events.yaml") %}
 <table class="section" id="events">
-
-    <tr v-for="event in events" v-bind:class="{future : event.future}">
-        <td>{{event.hdate}}</td>
-        <td>{{event.name}}</td>
+    {% for event in events | reverse %}
+    <tr>
+        <td>{{ human_date(event.date) }}</td>
+        <td>{{ event.name }}</td>
     </tr>
+    {% endfor %}
 </table>

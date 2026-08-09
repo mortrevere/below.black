@@ -101,7 +101,7 @@ function anim() {
 
     ++timeSinceLast
 
-    if ((lines.length < maxLines && timeSinceLast > 10 && Math.random() < .5) && vueh.newLines) {
+    if ((lines.length < maxLines && timeSinceLast > 10 && Math.random() < .5) && (!window.belowState || window.belowState.newLines)) {
 
         timeSinceLast = 0;
 
@@ -183,10 +183,10 @@ Line.prototype.step = function () {
         // kill the poor thing
         if (Math.random() < .2) dead = true;
         // kill more if no new lines
-        if (!vueh.newLines) dead = true;
+        if (!window.belowState || !window.belowState.newLines) dead = true;
     }
 
-    if (!vueh.newLines && Math.random() < .05) return true
+    if (window.belowState && !window.belowState.newLines && Math.random() < .05) return true
 
     ctx.strokeStyle = ctx.shadowColor = getColor(this.x);
     ctx.beginPath();

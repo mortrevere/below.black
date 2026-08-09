@@ -263,6 +263,12 @@ nav ul li {
     font-style: normal;
 }
 
+#vj .vj-gallery {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+}
+
 #sceno .sceno-img-wrapper {
     width: calc(33% - 12px);
     margin: 6px;

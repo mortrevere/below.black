@@ -1,0 +1,50 @@
+{% set humanMonth = {
+    1: 'janvier',
+    2: 'février',
+    3: 'mars',
+    4: 'avril',
+    5: 'mai',
+    6: 'juin',
+    7: 'juillet',
+    8: 'août',
+    9: 'septembre',
+    10: 'octobre',
+    11: 'novembre',
+    12: 'décembre'
+} %}
+
+{% macro human_date(date_string) -%}
+    {%- set day, month, year = date_string.split(' ') -%}
+    {{ day }} {{ humanMonth[month|int] }} {{ year }}
+{%- endmacro %}
+
+{% macro jpg_output_path(file) -%}
+    {{- file["path"][:-(file["ext"]|length)] }}.jpg
+{%- endmacro %}
+
+{% macro render_image_gallery(folder_path, wrapper_class) -%}
+    {%- set images = namespace(paths=[]) -%}
+    {%- for file in _o_["glob"](folder_path + "/*", kind="file") -%}
+        {%- if file["ext"]|lower in [".jpg", ".jpeg", ".png"] -%}
+            {%- set path = jpg_output_path(file) -%}
+            {%- if path not in images.paths -%}
+                {%- set images.paths = images.paths + [path] -%}
+            {%- endif -%}
+        {%- endif -%}
+    {%- endfor -%}
+    {%- for path in images.paths -%}
+    <div class="{{ wrapper_class }}">
+        <img src="{{ path|urlencode }}" />
+    </div>
+    {%- endfor -%}
+{%- endmacro %}
+
+{% macro has_images(folder_path) -%}
+    {%- set found = namespace(value=false) -%}
+    {%- for file in _o_["glob"](folder_path + "/*", kind="file") -%}
+        {%- if file["ext"]|lower in [".jpg", ".jpeg", ".png"] -%}
+            {%- set found.value = true -%}
+        {%- endif -%}
+    {%- endfor -%}
+    {{- found.value -}}
+{%- endmacro %}

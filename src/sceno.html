@@ -1,10 +1,20 @@
-!norender
-<div v-for="s in sceno">
+{% set albums = _o_["glob"]("media/pics/sceno_*", kind="folder") %}
+{% for index in range(999, -1, -1) %}
+{% for album in albums %}
+{% if album["name"].startswith("sceno_" ~ index ~ "_") and has_images(album["path"]) == "True" %}
+    {% set description = _o_["read_file"](album["path"] + "/description.txt", default="") %}
+    {% set copyright = _o_["read_file"](album["path"] + "/copyright.txt", default="") %}
+    {% if description or copyright %}
     <div class="sceno-title">
-        <p> {{s.description}} </p>
-        <p v-if="s.copyright">&copy; {{s.copyright}} </p>
+        {% if description %}
+        <p> {{ description }} </p>
+        {% endif %}
+        {% if copyright %}
+        <p>&copy; {{ copyright }} </p>
+        {% endif %}
     </div>
-    <div class="sceno-img-wrapper" v-for="img in s.img">
-        <img v-bind:src="img" />
-    </div>
-</div>
+    {% endif %}
+    {{ render_image_gallery(album["path"], "sceno-img-wrapper") }}
+{% endif %}
+{% endfor %}
+{% endfor %}

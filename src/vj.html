@@ -2,6 +2,6 @@
     <p>Créations visuelles du crew beLow</p>
     <p>Visuels génératifs, glitch analogique, télévisions cathodiques, etc. </p>
 </div>
-<div>
-    <div class="vj-img-wrapper" v-for="img in vj"><img v-bind:src="img" /></div>
+<div class="vj-gallery">
+    {{ render_image_gallery("media/pics/vj", "vj-img-wrapper") }}
 </div>
