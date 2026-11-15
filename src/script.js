@@ -123,10 +123,12 @@ function initRandomScenoGallery() {
             const wrapper = document.createElement('div');
             wrapper.className = 'sceno-img-wrapper sceno-random-img-wrapper';
 
-            const img = source.cloneNode(false);
+            const target = source.closest('.zoom-target').cloneNode(true);
+            target.setAttribute('aria-expanded', 'false');
+            const img = target.querySelector('img');
             img.loading = 'eager';
 
-            wrapper.appendChild(img);
+            wrapper.appendChild(target);
             randomGallery.appendChild(wrapper);
         });
     }
@@ -150,12 +152,43 @@ function stripFbclid() {
     history.replaceState(null, '', url.href);
 }
 
+function initImageZoom() {
+    const dialog = document.querySelector('.image-dialog');
+    const image = dialog.querySelector('img');
+    let activeTarget;
+
+    document.addEventListener('click', event => {
+        const target = event.target.closest('.zoom-target');
+        if (!target) return;
+        const source = target.querySelector('img');
+        image.src = source.src;
+        image.alt = source.alt;
+        activeTarget = target;
+        target.setAttribute('aria-expanded', 'true');
+        dialog.showModal();
+        document.documentElement.style.overflow = 'hidden';
+    });
+    dialog.querySelector('.zoom-close').addEventListener('click', () => dialog.close());
+    dialog.addEventListener('click', event => {
+        if (event.target === dialog) {
+            const rect = dialog.getBoundingClientRect();
+            if (event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom) dialog.close();
+        }
+    });
+    dialog.addEventListener('close', () => {
+        document.documentElement.style.overflow = '';
+        activeTarget.setAttribute('aria-expanded', 'false');
+        activeTarget.focus({ preventScroll: true });
+    });
+}
+
 document.getElementById('c').style.display = 'block';
 document.body.style.filter = 'invert(1)';
 
 initNavigation();
 initCarousels();
 initRandomScenoGallery();
+initImageZoom();
 setActiveSection(initialSection, false);
 stripFbclid();
 

@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <title>beLow - Arts numériques // Label // Scénographie</title>
     <link rel="stylesheet" href="style3.css">
+    <link rel="stylesheet" href="gallery-zoom.css">
     <script src="script.js" defer></script>
     <link rel="icon" type="image/png" href="media/favicon/96x96.png" sizes="96x96">
     <script src="bg.js" defer></script>
@@ -44,6 +45,11 @@
     </div>
 
     {{ src["social.html"] }}
+
+    <dialog class="image-dialog" aria-label="Image agrandie">
+        <button type="button" class="zoom-close" autofocus>Fermer ×</button>
+        <img alt="">
+    </dialog>
 
 </body>
 

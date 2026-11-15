@@ -22,7 +22,7 @@
     {{- file["path"][:-(file["ext"]|length)] }}.jpg
 {%- endmacro %}
 
-{% macro render_image_gallery(folder_path, wrapper_class) -%}
+{% macro render_image_gallery(folder_path, wrapper_class, shuffle=false) -%}
     {%- set images = namespace(paths=[]) -%}
     {%- for file in _o_["glob"](folder_path + "/*", kind="file") -%}
         {%- if file["ext"]|lower in [".jpg", ".jpeg", ".png"] -%}
@@ -32,9 +32,13 @@
             {%- endif -%}
         {%- endif -%}
     {%- endfor -%}
-    {%- for path in images.paths -%}
+    {%- for index in range(images.paths|length) -%}
+    {%- set path = (images.paths|random) if shuffle else images.paths[0] -%}
+    {%- set _ = images.paths.remove(path) -%}
     <div class="{{ wrapper_class }}">
-        <img src="{{ path|urlencode }}" loading="lazy" decoding="async" />
+        <button type="button" class="zoom-target" aria-label="Agrandir l’image" aria-expanded="false">
+            <img src="{{ path|urlencode }}" alt="{{ path.rsplit('/', 1)[-1][:-4]|replace('_', ' ')|e }}" loading="lazy" decoding="async" />
+        </button>
     </div>
     {%- endfor -%}
 {%- endmacro %}
